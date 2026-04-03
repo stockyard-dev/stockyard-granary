@@ -43,7 +43,7 @@ input[type=text],input[type=file]{background:var(--bg);border:1px solid var(--bg
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head><body>
 <div class="hdr"><h1><span>Granary</span></h1><button class="btn btn-p" onclick="showNewBucket()">+ Bucket</button></div>
-<div class="main">
+<div class="main"><div id="upgrade-banner" style="display:none;background:#241e18;border:1px solid #8b3d1a;border-left:3px solid #c45d2c;padding:.6rem 1rem;font-size:.78rem;color:#bfb5a3;margin-bottom:.8rem"><strong style="color:#f0e6d3">Free tier</strong> — 10 items max. <a href="https://stockyard.dev/granary/" target="_blank" style="color:#e8753a">Upgrade to Pro →</a></div>
 <div class="overview" id="overview"></div>
 <div id="bucketList"></div>
 <div id="detail" style="display:none;margin-top:1rem"></div>
@@ -123,4 +123,5 @@ async function saveBucket(){
 
 function closeModal(){document.getElementById('modal').innerHTML=''}
 init()
+fetch('/api/tier').then(r=>r.json()).then(j=>{if(j.tier==='free'){var b=document.getElementById('upgrade-banner');if(b)b.style.display='block'}}).catch(()=>{var b=document.getElementById('upgrade-banner');if(b)b.style.display='block'});
 </script></body></html>`
